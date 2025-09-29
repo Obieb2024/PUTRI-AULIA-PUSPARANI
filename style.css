@@ -16,19 +16,17 @@ html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
 #gallery-button-container { margin-top: 20px; }
 #show-gallery-button { padding: 12px 25px; font-size: 1em; font-family: 'Pacifico', cursive; color: #E75480; background-color: white; border: 2px solid #ffb6c1; border-radius: 50px; cursor: pointer; transition: all 0.3s ease; }
 
-/* --- EFEK BARU: BEBERAPA LAPIS GULIR FOTO SERONG --- */
+/* --- PERUBAHAN UTAMA: GULIR FOTO MENGISI RUANG KOSONG --- */
 .background-photos-container {
     position: absolute;
-    /* Lebar dibuat sangat besar agar rotasi tidak menciptakan ruang kosong */
-    width: 200%; 
+    width: 150%; /* Lebar disesuaikan agar pas saat diputar */
     z-index: 1;
     opacity: 0.25;
     pointer-events: none;
-    transform: rotate(-20deg) scale(1.5);
+    transform: rotate(-20deg) scale(1.3); /* Skala sedikit disesuaikan */
 }
 .background-photos {
     display: flex;
-    flex-wrap: nowrap;
     gap: 15px;
     animation: scroll-bg 80s linear infinite;
 }
@@ -43,22 +41,17 @@ html, body { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
     100% { transform: translateX(-50%); }
 }
 
-/* Atur posisi dan animasi setiap baris agar berbeda */
-.background-photos-container:nth-child(1) {
-    top: -10%; /* Posisi baris pertama */
-}
-.background-photos-container:nth-child(2) {
-    top: 40%; /* Posisi baris kedua */
-    /* Mulai animasi dari titik yang berbeda agar tidak seragam */
-    animation-delay: -30s; 
-}
-.background-photos-container:nth-child(3) {
-    top: 90%; /* Posisi baris ketiga */
-    animation-delay: -60s;
-}
+/* Atur posisi setiap baris agar menyebar dan tidak menumpuk */
+/* Baris Kiri */
+.background-photos-container:nth-child(1) { top: -20%; left: -50%; animation-delay: 0s; }
+.background-photos-container:nth-child(2) { top: 30%; left: -60%; animation-delay: -30s; }
+.background-photos-container:nth-child(3) { top: 80%; left: -40%; animation-delay: -60s; }
+/* Baris Kanan */
+.background-photos-container:nth-child(4) { top: -10%; left: 40%; animation-delay: -15s; }
+.background-photos-container:nth-child(5) { top: 40%; left: 50%; animation-delay: -45s; }
+.background-photos-container:nth-child(6) { top: 90%; left: 30%; animation-delay: -70s; }
 
 /* --- CSS SLIDER FOTO BESAR (Tidak berubah) --- */
-/* ... (Seluruh kode CSS untuk slider besar dari jawaban sebelumnya tetap sama) ... */
 .slider-container { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; z-index: 10; }
 .slider-track { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 .slide { position: absolute; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #ffdde1; display: flex; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; opacity: 0; transform: scale(1.1); transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out; }
